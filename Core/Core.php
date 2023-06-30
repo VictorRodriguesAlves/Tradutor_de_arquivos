@@ -27,12 +27,10 @@ class Core {
 
         }
 
-        try {
+
             $c = new $controller;
             call_user_func_array(array($c, $action), $param);
-        } catch (Throwable $e) {
-            require("View/notFound.php");
-        }
+
     }
 
 }

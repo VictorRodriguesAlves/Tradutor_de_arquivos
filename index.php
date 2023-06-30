@@ -1,4 +1,6 @@
 <?php
+require('config.php');
+require('vendor/autoload.php');
 spl_autoload_register(function ($class) {
     if (file_exists("Core/" . $class . ".php")) {
         require("Core/" . $class . ".php");
@@ -8,6 +10,10 @@ spl_autoload_register(function ($class) {
         require("Model/" . $class . ".php");
     }
 });
+
+if (session_status() !== PHP_SESSION_ACTIVE){
+    session_start();
+}
 
 $core = new Core;
 $core->run();

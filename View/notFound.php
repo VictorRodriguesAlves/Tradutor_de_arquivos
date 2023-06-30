@@ -10,7 +10,7 @@
     <div class="container">
         <h1>404</h1>
         <h2>Pagina não encontrada</h2>
-        <p>Volte para a <a href="home">home</a></p>
+        <p>Volte para a <a href="<?php echo BASE_URL?>home">home</a></p>
     </div>
 </body>
 </html>
