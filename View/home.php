@@ -1,29 +1,21 @@
 <?php
 if($_SESSION['conteudo']){
-    // Criar arquivo temporário
     $tempFile = tmpfile();
 
-    // Escrever conteúdo no arquivo temporário
     fwrite($tempFile, $_SESSION['conteudo']);
 
-    // Obter o caminho do arquivo temporário
     $tempFilePath = stream_get_meta_data($tempFile)['uri'];
 
-    // Definir o tipo MIME do arquivo
     $tipoMime = mime_content_type($tempFilePath);
 
-    // Definir o nome do arquivo que será exibido para o usuário ao fazer o download
     $nomeArquivo = 'traduzido.txt';
 
-    // Definir os cabeçalhos HTTP
     header("Content-Type: $tipoMime");
     header("Content-Disposition: attachment; filename=\"$nomeArquivo\"");
 
-    // Enviar o conteúdo do arquivo temporário para o navegador do usuário
     rewind($tempFile);
     fpassthru($tempFile);
 
-    // Excluir o arquivo temporário
     unlink($tempFilePath);
     unset($_SESSION['conteudo']);
     exit;
